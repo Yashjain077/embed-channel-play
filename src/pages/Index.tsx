@@ -1,22 +1,79 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
-  const [activeChannel, setActiveChannel] = useState<1 | 2>(1);
+  const [activeChannel, setActiveChannel] = useState<1 | 2 | 3 | 4>(1);
+  const { toast } = useToast();
+  const telegramLink = "https://t.me/+NH1kewfKuaswMzg9";
 
   const channels = {
     1: {
-      url: "https://cricketstan.github.io/Channel-14/",
+      url: "https://video-float-buddy.lovable.app/",
       name: "Channel 1",
-      description: "Watch live sports action on Channel 14. Enjoy high-quality streaming with minimal buffering."
+      description: "Watch live sports action with high-quality streaming and minimal buffering."
     },
     2: {
-      url: "https://video-float-buddy.lovable.app/",
+      url: "https://cricketstan.github.io/Channel-14/",
       name: "Channel 2",
-      description: "Alternative sports streaming channel with enhanced viewing experience."
+      description: "Premium sports streaming channel for cricket enthusiasts."
+    },
+    3: {
+      url: "https://cricketstan.github.io/Willow-Cricbuzz-/",
+      name: "Channel 3",
+      description: "Willow Cricket coverage with expert commentary and analysis."
+    },
+    4: {
+      url: "https://cricketstan.github.io/Sony-Liv/",
+      name: "Channel 4",
+      description: "Sony Liv sports streaming with comprehensive cricket coverage."
     }
   };
+
+  // Show Telegram join toast on initial load
+  useEffect(() => {
+    toast({
+      title: "Join Our Community! 🎉",
+      description: (
+        <div className="flex flex-col gap-2">
+          <p>Stay updated with latest streams and announcements</p>
+          <Button 
+            variant="secondary" 
+            size="sm" 
+            onClick={() => window.open(telegramLink, '_blank')}
+            className="w-fit"
+          >
+            Join Telegram
+          </Button>
+        </div>
+      ),
+      duration: 6000,
+    });
+  }, []);
+
+  // Show Telegram toast when channel changes
+  useEffect(() => {
+    if (activeChannel !== 1) { // Don't show on initial channel
+      toast({
+        title: "Enjoying the stream? 📺",
+        description: (
+          <div className="flex flex-col gap-2">
+            <p>Join our Telegram for more channels!</p>
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              onClick={() => window.open(telegramLink, '_blank')}
+              className="w-fit"
+            >
+              Join Telegram
+            </Button>
+          </div>
+        ),
+        duration: 5000,
+      });
+    }
+  }, [activeChannel]);
 
   const currentChannel = channels[activeChannel];
 
@@ -29,9 +86,17 @@ const Index = () => {
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               {currentChannel.name}
             </h1>
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm text-muted-foreground">LIVE</span>
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={() => window.open(telegramLink, '_blank')}
+                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+              >
+                Crick On Time
+              </Button>
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm text-muted-foreground">LIVE</span>
+              </div>
             </div>
           </div>
         </div>
@@ -55,12 +120,12 @@ const Index = () => {
           </Card>
 
           {/* Channel Selector */}
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Button
               variant={activeChannel === 1 ? "default" : "secondary"}
               size="lg"
               onClick={() => setActiveChannel(1)}
-              className="min-w-[140px] transition-[var(--transition-smooth)]"
+              className="min-w-[130px] transition-[var(--transition-smooth)]"
             >
               Channel 1
             </Button>
@@ -68,9 +133,25 @@ const Index = () => {
               variant={activeChannel === 2 ? "default" : "secondary"}
               size="lg"
               onClick={() => setActiveChannel(2)}
-              className="min-w-[140px] transition-[var(--transition-smooth)]"
+              className="min-w-[130px] transition-[var(--transition-smooth)]"
             >
               Channel 2
+            </Button>
+            <Button
+              variant={activeChannel === 3 ? "default" : "secondary"}
+              size="lg"
+              onClick={() => setActiveChannel(3)}
+              className="min-w-[130px] transition-[var(--transition-smooth)]"
+            >
+              Channel 3
+            </Button>
+            <Button
+              variant={activeChannel === 4 ? "default" : "secondary"}
+              size="lg"
+              onClick={() => setActiveChannel(4)}
+              className="min-w-[130px] transition-[var(--transition-smooth)]"
+            >
+              Channel 4
             </Button>
           </div>
 
