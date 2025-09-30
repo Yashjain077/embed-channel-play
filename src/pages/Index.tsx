@@ -103,14 +103,20 @@ const Index = () => {
           {/* Player Card */}
           <Card className="overflow-hidden border-primary/20 shadow-lg hover:shadow-[var(--shadow-glow)] transition-[var(--transition-smooth)]">
             <div className="aspect-video w-full relative bg-black">
-              <iframe
-                key={activeChannel}
-                src={currentChannel.url}
-                className="absolute inset-0 w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`${currentChannel.name} Live Stream`}
-              />
+              {/* Preload all channels, show active one */}
+              {Object.entries(channels).map(([key, channel]) => (
+                <iframe
+                  key={key}
+                  src={channel.url}
+                  className={`absolute inset-0 w-full h-full border-0 transition-opacity duration-200 ${
+                    activeChannel === Number(key) ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="eager"
+                  title={`${channel.name} Live Stream`}
+                />
+              ))}
             </div>
           </Card>
 
