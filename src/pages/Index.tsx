@@ -10,7 +10,7 @@ const Index = () => {
 
   const channels = {
     1: {
-      url: "https://video-float-buddy.lovable.app/",
+      url: "https://hff-eight.vercel.app/",
       name: "Channel 1",
       description: "Watch live sports action with high-quality streaming and minimal buffering."
     },
