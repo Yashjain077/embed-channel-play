@@ -100,23 +100,20 @@ const Index = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto space-y-6">
-          {/* Player Card */}
-          <Card className="overflow-hidden border-primary/20 shadow-lg hover:shadow-[var(--shadow-glow)] transition-[var(--transition-smooth)]">
-            <div className="aspect-video w-full relative bg-black">
-              {/* Preload all channels, show active one */}
-              {Object.entries(channels).map(([key, channel]) => (
-                <iframe
-                  key={key}
-                  src={`${channel.url}${channel.url.includes('?') ? '&' : '?'}autoplay=1&muted=0`}
-                  className={`absolute inset-0 w-full h-full border-0 transition-opacity duration-200 ${
-                    activeChannel === Number(key) ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                  }`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                  allowFullScreen
-                  loading="eager"
-                  title={`${channel.name} Live Stream`}
-                />
-              ))}
+          {/* Premium Player Card */}
+          <Card className="overflow-hidden border-primary/20 shadow-2xl bg-gradient-to-br from-card to-card/50 backdrop-blur-xl">
+            <div className="aspect-video w-full relative bg-black rounded-lg">
+              <iframe
+                key={activeChannel}
+                src={`${currentChannel.url}${currentChannel.url.includes('?') ? '&' : '?'}autoplay=1&muted=0`}
+                className="absolute inset-0 w-full h-full border-0 rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+                title={`${currentChannel.name} Live Stream`}
+                style={{ aspectRatio: '16/9' }}
+              />
+              {/* Premium overlay gradient */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
             </div>
           </Card>
 
