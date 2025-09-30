@@ -107,11 +107,11 @@ const Index = () => {
               {Object.entries(channels).map(([key, channel]) => (
                 <iframe
                   key={key}
-                  src={channel.url}
+                  src={`${channel.url}${channel.url.includes('?') ? '&' : '?'}autoplay=1&muted=0`}
                   className={`absolute inset-0 w-full h-full border-0 transition-opacity duration-200 ${
                     activeChannel === Number(key) ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                   allowFullScreen
                   loading="eager"
                   title={`${channel.name} Live Stream`}
