@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
-  const [activeChannel, setActiveChannel] = useState<1 | 2 | 4>(1);
+  const [activeChannel, setActiveChannel] = useState<1 | 2 | 3 | 4>(1);
   const { toast } = useToast();
   const telegramLink = "https://t.me/+NH1kewfKuaswMzg9";
 
@@ -18,6 +18,11 @@ const Index = () => {
       url: "https://cricketstan.github.io/Channel-14/",
       name: "Channel 2",
       description: "Premium sports streaming channel for cricket enthusiasts."
+    },
+    3: {
+      url: "https://cricketstan.github.io/Sony-ten-5/",
+      name: "ios user name",
+      description: "Sony Ten 5 live streaming for iOS users."
     },
     4: {
       url: "https://cricketstan.github.io/Sony-Liv/",
@@ -134,6 +139,14 @@ const Index = () => {
               className="min-w-[130px] transition-[var(--transition-smooth)]"
             >
               Channel 2
+            </Button>
+            <Button
+              variant={activeChannel === 3 ? "default" : "secondary"}
+              size="lg"
+              onClick={() => setActiveChannel(3)}
+              className="min-w-[130px] transition-[var(--transition-smooth)]"
+            >
+              ios user name
             </Button>
             <Button
               variant={activeChannel === 4 ? "default" : "secondary"}
