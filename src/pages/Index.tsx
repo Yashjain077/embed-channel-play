@@ -33,6 +33,16 @@ const Index = () => {
       url: "https://cricketstan.github.io/Willow-Cricbuzz-/",
       name: "Channel 5",
       description: "Willow Cricbuzz live cricket streaming."
+    },
+    6: {
+      url: "https://cricketstan.github.io/channel-12/",
+      name: "Nz V Aus",
+      description: "Prime Video streaming with comprehensive cricket coverage."
+    },
+    7: {
+      url: "https://liveakmt-p-web.slivcdn.com/hls/live/2018457/DAI35ME-V3/std_lrh-800300010.m3u8?hdnea=exp=1759602024~acl=/*~id=93789066267537834908790394515783~hmac=ae4ffe1b21c7a08bbaeffbffacf33032a3682ca4d7e573b17d465f55eedb7ee6",
+      name: "Nz V Aus Ios",
+      description: "Prime Video Ios streaming with comprehensive cricket coverage."
     }
   };
 
